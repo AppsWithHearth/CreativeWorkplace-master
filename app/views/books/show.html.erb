@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h3><%= @book.title %></h3>
+
+<table class="table">
+  <td>
+  <img src="<%= @book.picture %>">
+</td>
+  <td>
+<p>
+  von <%= @book.author %>
+</p>
+
+<p>
+  <strong>Beschreibung:</strong><br>
+  <%= @book.description %>
+</p>
+
+<p>
+  <strong>Verlag:</strong>
+  <%= @book.publisher %>
+</p>
+
+<p>
+  <strong>Veröffentlichungsdatum:</strong>
+  <%= @book.pub_date %>
+</p>
+
+<p>
+  <strong>ISBN:</strong>
+  <%= @book.isbn %>
+</p>
+
+<p>
+  <strong>Preis:</strong>
+  <%= @book.price %> €
+</p>
+
+</td>
+</table>
+
+
+
+<%= link_to 'Zurück zur Übersicht', books_path %>

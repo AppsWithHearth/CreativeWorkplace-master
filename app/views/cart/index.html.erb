@@ -1,0 +1,40 @@
+<h1>Warenkorb</h1>
+
+<table class="table">
+<thead>
+	<tr>
+		<th></th>
+		<th>Titel</th>
+		<th>Preis</th>
+		<th>Anzahl</th>
+	</tr>
+</thead>
+<% @cart_items.each do |cart_item| %>
+<tbody>
+	<tr>
+		<td>
+    	<img src="<%= cart_item.book.picture %>" class="thumbnail">
+    	</td>
+    	<td>
+		<%= link_to cart_item.book.title, cart_item.book %>
+		</td>
+		<td>
+		<%= cart_item.book.price %> €
+		</td>
+		<td>
+			<%= form_for cart_item, html: {class: 'form-inline', style:"display: inline-block"} do |f| %>
+			<%= f.select :amount, [1,2,3,4,5], {}, class: 'form-control' %>
+			<%= button_tag type: 'submit', class: "btn btn-warning btn-sm" do %>
+			<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> 
+			<% end %>
+			<% end %>
+			<%= form_for cart_item, html: {class: 'form-inline', style:"display: inline-block"}, url: cart_path(cart_item), method: :delete do |f| %>
+			<%= button_tag type: 'submit', class: "btn btn-danger btn-sm" do %>
+			<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 
+			<% end %>
+			<% end %>
+		</td>
+<% end %>
+</tbody>
+</table>
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CreativeMinds</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/welcomes/">CreativeMinds</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/books/">Produkte</a></li>
+        <li><a href="/posts/">Blog</a></li>
+        <li><a href="/cart/">Warenkorb</a></li>
+        <li><a href="/wurst/">Warenkorb</a></li>
+      </ul>
+
+      <div class="collapse navbar-collapse">
+        <p class="navbar-text navbar-right">
+          <% if user_signed_in? %>
+            Angemeldet als <%= link_to current_user.name, edit_user_registration_path(id: current_user.id) %>
+            (<%= link_to "abmelden", destroy_user_session_path, method: :delete %>)
+          <% else %>
+            <%= link_to "anmelden", new_user_session_path %> |
+            <%= link_to "registrieren", new_user_registration_path %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <%= render partial: "alerts" %>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
